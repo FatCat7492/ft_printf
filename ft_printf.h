@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:40:20 by luschuma          #+#    #+#             */
-/*   Updated: 2026/10/16 12:01:11 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/10/19 14:50:05 by luis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef
-# include <libft.h>
-# include <stdarg.h> 
+#ifndef FT_PRINTF_H
+
+# define FT_PRINTF_H
+
+# include <stdarg.h>
+# include "libft.h"
 
 int	ft_printf(const char *, ...);
 
