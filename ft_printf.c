@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:43:21 by luschuma          #+#    #+#             */
-/*   Updated: 2026/10/20 13:43:31 by luis             ###   ########.fr       */
+/*   Updated: 2026/10/20 14:46:00 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "ft_printf.h"
 
 static int	is_in_set(char c)
 {
@@ -24,19 +25,19 @@ static int	is_in_set(char c)
 	}
 	return (0);
 }
-int	ft_print_char(char c)
+static int	ft_print_char(char c)
 {
 	ft_putchar_fd(c, 1);
 	return (1);
 }
 
-int	ft_print_string(char *str)
+static int	ft_print_string(char *str)
 {
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
 
-int	ft_print_decimal(int number)
+static int	ft_print_decimal(int number)
 {
 	int	count;
 
@@ -45,50 +46,53 @@ int	ft_print_decimal(int number)
 	while (number != 0)
 	{
 		count++;
-		number / 10;
+		number /= 10;
 	}
 	return (count);
 }
-int	triage_center(char type, va_list args)
+static int	triage_center(char type, va_list args)
 {
 	int	count;
 
 	count = 0;
 	if (type == 'c')
-		count += ft_print_char(args);
+		count += ft_print_char(va_arg(args, int));
 	if (type == 's')
-		count += ft_print_string(args);
+		count += ft_print_string(va_arg(args, char *));
 	if (type == 'p')
-		count += ft_print_pointer(args);
+		count += ft_print_hex((unsigned long)va_arg(args, void *), type);
 	if (type == 'd')
-		count += ft_print_decimal(args);
+		count += ft_print_decimal(va_arg(args, int));
 	if (type == 'i')
-		count += ft_print_integer(args);
+		count += ft_print_decimal(va_arg(args, int));
 	if (type == 'u')
-		count += ft_print_unsigned(args);
+		count += ft_print_decimal(va_arg(args, unsigned int));
 	if (type == 'x')
-		count += ft_print_hex_min(args);
+		count += ft_print_hex(va_arg(args, int), type);
 	if (type == 'X')
-		count += ft_print_hex_max(args);
+		count += ft_print_hex(va_arg(args, int), type);
 	if (type == '%')
-		count += ft_print_percent(args);
+		count += ft_print_char(va_arg(args, int));
 	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	int	count;
-	va_list args
+	va_list args;
 
-	va_start(args, s)
+	va_start(args, s);
 	count = 0;
 	while (*s)
 	{
-		if (*s == "%" && is_in_set(*(s + 1)) == 1)
-			triage_center(*(s + 1), args);
-		ft_putchar_fd(*s, 1);
+		if ((*s == '%') && (is_in_set(*(s + 1)) == 1))
+			count += triage_center(*(s + 1), args);
+		else
+		{
+			ft_putchar_fd(*s, 1);
+			count++;
+		}
 		s++;
-		counter++;
 	}
 	va_end(args);
 	return (count);

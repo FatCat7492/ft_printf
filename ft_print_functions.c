@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:36:37 by luschuma          #+#    #+#             */
-/*   Updated: 2026/10/20 13:31:21 by luis             ###   ########.fr       */
+/*   Updated: 2026/10/20 17:03:52 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_print_base(char *base, int number)
 	return (count);
 }
 
-int	ft_print_hexa(int nbr, char hex)
+int	ft_print_hex(unsigned long nbr, char hex)
 {
 	char	*hex_min;
 	char	*hex_maj;
@@ -36,7 +36,7 @@ int	ft_print_hexa(int nbr, char hex)
 	hex_min = "0123456789abcdef";
 	hex_maj = "0123456789ABCDEF";
 	if (hex == 'x')
-		count = ft_print_min(hex_min, nbr);
+		count = ft_print_base(hex_min, nbr);
 	if (hex == 'X')
 		count = ft_print_base(hex_max, nbr);
 	if (hex == 'p')
@@ -54,3 +54,4 @@ int	ft_print_hexa(int nbr, char hex)
 // 	ft_print_hexa(number, 'x');
 // 	return 0;
 // }
+
