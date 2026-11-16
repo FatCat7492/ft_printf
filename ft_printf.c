@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:43:21 by luschuma          #+#    #+#             */
-/*   Updated: 2026/11/13 15:26:42 by luis             ###   ########.fr       */
+/*   Updated: 2026/11/16 11:26:01 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	is_in_set(char c)
 {
 	const char	*set = "cspdiuxX%";
-	
+
 	while (*set)
 	{
 		if (c == *set)
@@ -50,38 +50,38 @@ int	triage_center(char type, va_list *args)
 	return (count);
 }
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *string, ...)
 {
-	int	count;
-	va_list args;
+	int		count;
+	va_list	args;
 
-	va_start(args, s);
+	va_start(args, string);
 	count = 0;
-	while (*s)
+	while (*string)
 	{
-		if ((*s == '%') && (is_in_set(*(s + 1)) == 1))
+		if ((*string == '%') && (is_in_set(*(string + 1)) == 1))
 		{
-			if (*(s + 1) == '%')
+			if (*(string + 1) == '%')
 			{
-				ft_putchar_fd(*(s + 1), 1);
+				ft_putchar_fd(*(string + 1), 1);
 				count++;
-				break;
+				break ;
 			}
-			count += triage_center(*(s + 1), &args);
-			s++;
+			count += triage_center(*(string + 1), &args);
+			string++;
 		}
 		else
 		{
-			ft_putchar_fd(*s, 1);
+			ft_putchar_fd(*string, 1);
 			count++;
 		}
-		s++;
+		string++;
 	}
 	va_end(args);
 	return (count);
 }
 
-int main()
+/*int main()
 {
 	// int age = 0;
 	char *nom = "Luis";
@@ -94,4 +94,4 @@ int main()
 	// printf("%d", ft_printf("Je m'appelle %s", nom));
 
 	return 0;
-}
+}*/

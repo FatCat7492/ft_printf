@@ -40,6 +40,7 @@ static int	ft_putnbr_base(char *base, unsigned long number)
 	}
 	return (count);
 }
+
 int	ft_print_pointer(char *base, void *pointer)
 {
 	int	count;
@@ -57,7 +58,7 @@ int	ft_print_pointer(char *base, void *pointer)
 		count += 2;
 		count += ft_putnbr_base(base, (unsigned long)pointer);
 	}
-	return (count);	
+	return (count);
 }
 
 int	ft_print_hex(unsigned long nbr, char hex)
@@ -108,39 +109,3 @@ int	ft_print_hex(unsigned long nbr, char hex)
 // 	ft_print_pointer("0123456789abcdef", ptr);
 // 	return 0;
 // }
-
-
-
-// # NAME = ft_printf
-
-// # CC = gcc
-// # CFLAGS = -Wall -Wextra -Werror -I../libft
-
-// # LIBFT_DIR = ../libft
-// # LIBFT = $(LIBFT_DIR)/libft.a
-
-// # SRCS = ft_printf.c
-// # OBJS = $(SRCS:.c=.o)
-
-// # all: $(NAME)
-
-// # $(NAME): $(OBJS)
-// # 	$(MAKE) -C $(LIBFT_DIR)
-// # 	cp $(LIBFT) .
-// # 	ar rcs $(NAME) $(OBJS)
-// # 	ar rcs $(NAME) libft.a
-
-// # %.o: %.c ft_printf.h
-// # 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
-
-// # clean:
-// # 	rm -f $(OBJS)
-// # 	$(MAKE) -C $(LIBFT_DIR) clean
-
-// # fclean: clean
-// # 	rm -f $(NAME) libft.a
-// # 	$(MAKE) -C $(LIBFT_DIR) fclean
-
-// # re: fclean all
-
-// # .PHONY: all clean fclean re
