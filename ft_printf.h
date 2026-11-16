@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:40:20 by luschuma          #+#    #+#             */
-/*   Updated: 2026/10/20 14:47:07 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:15:05 by luis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,21 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 int	ft_printf(const char *, ...);
-static int	is_in_set(char c);
-static int	ft_print_char(char c);
-static int	ft_print_string(char *str);
-static int	ft_print_decimal(int number);
-static int	triage_center(char type, va_list args);
-static int	ft_print_base(char *base, int number);
-int	ft_print_hex(int nbr, char hex);
+int	is_in_set(char c);
+int	ft_print_char(char c);
+int	ft_print_string(char *str);
+int	ft_print_decimal(int number);
+int	ft_print_unsigned(unsigned int number);
+int	triage_center(char type, va_list *args);
+
+/*printf_functions*/
+int	ft_putnbr_base(char *base, unsigned long number);
+int	ft_print_pointer(char *base, void *pointer);
+int	ft_print_hex(unsigned long nbr, char hex);
+
 
 
 #endif

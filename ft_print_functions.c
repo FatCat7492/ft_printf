@@ -3,27 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/16 14:36:37 by luschuma          #+#    #+#             */
-/*   Updated: 2026/10/20 17:03:52 by luschuma         ###   ########.fr       */
+/*   Created: 2026/11/11 11:49:00 by luis              #+#    #+#             */
+/*   Updated: 2026/11/13 15:24:27 by luis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft/libft.h"
+#include "ft_printf.h"
 
-int	ft_print_base(char *base, int number)
+static int	ft_putnbr_base(char *base, unsigned long number)
+{
+	unsigned long	nbr;
+	int				count;
+	unsigned long	base_length;
+
+	base_length = 16;
+	count = 0;
+	nbr = number;
+	if (number == 0)
+	{
+		ft_putchar_fd('0', 1);
+		count++;
+		return (count);
+	}
+	if (nbr < base_length)
+	{
+		ft_putchar_fd(base[nbr], 1);
+		count++;
+	}
+	else
+	{
+		count += ft_putnbr_base(base, nbr / base_length);
+		count += ft_putnbr_base(base, nbr % base_length);
+	}
+	return (count);
+}
+int	ft_print_pointer(char *base, void *pointer)
 {
 	int	count;
 
 	count = 0;
-	while(nbr != 0)
+	if (pointer == NULL)
 	{
-		ft_putchar_fd(1, hex_min[nbr % 16]);
-		nbr /= 16;
-		count++;
+		ft_putstr_fd("(nil)", 1);
+		count += 5;
+		return (count);
 	}
-	return (count);
+	else
+	{
+		ft_putstr_fd("0x", 1);
+		count += 2;
+		count += ft_putnbr_base(base, (unsigned long)pointer);
+	}
+	return (count);	
 }
 
 int	ft_print_hex(unsigned long nbr, char hex)
@@ -36,22 +70,77 @@ int	ft_print_hex(unsigned long nbr, char hex)
 	hex_min = "0123456789abcdef";
 	hex_maj = "0123456789ABCDEF";
 	if (hex == 'x')
-		count = ft_print_base(hex_min, nbr);
+		count += ft_putnbr_base(hex_min, nbr);
 	if (hex == 'X')
-		count = ft_print_base(hex_max, nbr);
-	if (hex == 'p')
-	{
-		count += ft_putstr_fd("0x");
-		count += ft_print_base(hex_min, nbr);
-	}
+		count += ft_putnbr_base(hex_maj, nbr);
 	return (count);
 }
 
-
 // int main()
 // {
-// 	int number = 5815;
-// 	ft_print_hexa(number, 'x');
+// 	int number = 0;
+// 	ft_putnbr_base("0123456789abcdef", number);
+
+// 	printf("\n");
+
+// 	number = 10;
+// 	ft_putnbr_base("0123456789abcdef", number);
+
+// 	printf("\n");
+// 	number = 16;
+// 	ft_putnbr_base("0123456789abcdef", number);
+
+// 	printf("\n");
+// 	number = 26;
+// 	ft_putnbr_base("0123456789abcdef", number);
+
+// 	printf("\n");
+// 	number = 4096;
+// 	ft_putnbr_base("0123456789abcdef", number);
+
+// 	printf("\n");
+// 	void *ptr;
+// 	ptr = &number;
+// 	ft_print_pointer("0123456789abcdef", ptr);
+
+// 	printf("\n");
+// 	ptr = NULL;
+// 	ft_print_pointer("0123456789abcdef", ptr);
 // 	return 0;
 // }
 
+
+
+// # NAME = ft_printf
+
+// # CC = gcc
+// # CFLAGS = -Wall -Wextra -Werror -I../libft
+
+// # LIBFT_DIR = ../libft
+// # LIBFT = $(LIBFT_DIR)/libft.a
+
+// # SRCS = ft_printf.c
+// # OBJS = $(SRCS:.c=.o)
+
+// # all: $(NAME)
+
+// # $(NAME): $(OBJS)
+// # 	$(MAKE) -C $(LIBFT_DIR)
+// # 	cp $(LIBFT) .
+// # 	ar rcs $(NAME) $(OBJS)
+// # 	ar rcs $(NAME) libft.a
+
+// # %.o: %.c ft_printf.h
+// # 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+
+// # clean:
+// # 	rm -f $(OBJS)
+// # 	$(MAKE) -C $(LIBFT_DIR) clean
+
+// # fclean: clean
+// # 	rm -f $(NAME) libft.a
+// # 	$(MAKE) -C $(LIBFT_DIR) fclean
+
+// # re: fclean all
+
+// # .PHONY: all clean fclean re
