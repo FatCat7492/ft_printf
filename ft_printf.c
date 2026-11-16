@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:43:21 by luschuma          #+#    #+#             */
-/*   Updated: 2026/11/16 13:06:59 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/11/16 14:45:27 by luis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,17 @@ int	ft_printf(const char *string, ...)
 	return (count);
 }
 
-int main()
-{
-	// int age = 0;
-	char *nom = "Luis";
-	// char *nom2 = "Samuel";
-	// int age2 = 22;
-	printf("PRINTF: ---- Je m'appelle %s et j'ai %i ans\n", nom, INT32_MAX);
-	ft_printf("FT_PRINTF: ----Je m'appelle %s et j'ai %i ans\n", nom, INT32_MAX);
+// int main()
+// {
+// 	// int age = 0;
+// 	char *nom = "Luis";
+// 	// char *nom2 = "Samuel";
+// 	// int age2 = 22;
+// 	printf("PRINTF: ---- Je m'appelle %s et j'ai %i ans\n", nom, INT32_MAX);
+// 	ft_printf("FT_PRINTF: ----Je m'appelle %s et j'ai %i ans\n", nom, INT32_MAX);
 
-	// ft_printf("I'm %i\n", age);
-	// printf("%d", ft_printf("Je m'appelle %s", nom));
+// 	// ft_printf("I'm %i\n", age);
+// 	// printf("%d", ft_printf("Je m'appelle %s", nom));
 
-	return 0;
-}
+// 	return 0;
+// }
