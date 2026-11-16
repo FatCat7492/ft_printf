@@ -6,7 +6,7 @@
 /*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:57:19 by luis              #+#    #+#             */
-/*   Updated: 2026/11/16 13:29:03 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/11/16 15:57:24 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,4 @@ int	ft_print_decimal(int number)
 int	ft_print_unsigned(unsigned int number)
 {
 	return (ft_putnbr_base("0123456789", number));
-	// if (number == UINT_MAX)
-	// 	return (ft_putnbr_base("0123456789", number));
-	// if (number == 0)
-	// {
-	// 	ft_putnbr_base("0123456789", 0);
-	// 	return (1);
-	// }
-	// count = 0;
-	// ft_putnbr_base("0123456789", number);
-	// while (number != 0)
-	// {
-	// 	count++;
-	// 	number /= 10;
-	// }
 }
