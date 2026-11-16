@@ -6,14 +6,14 @@
 /*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:43:21 by luschuma          #+#    #+#             */
-/*   Updated: 2026/11/16 11:26:01 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:06:59 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-int	is_in_set(char c)
+static int	is_in_set(char c)
 {
 	const char	*set = "cspdiuxX%";
 
@@ -32,6 +32,8 @@ int	triage_center(char type, va_list *args)
 
 	count = 0;
 	if (type == 'c')
+		count += ft_print_char(va_arg(*args, int));
+	if (type == '%')
 		count += ft_print_char(va_arg(*args, int));
 	if (type == 's')
 		count += ft_print_string(va_arg(*args, char *));
@@ -61,12 +63,6 @@ int	ft_printf(const char *string, ...)
 	{
 		if ((*string == '%') && (is_in_set(*(string + 1)) == 1))
 		{
-			if (*(string + 1) == '%')
-			{
-				ft_putchar_fd(*(string + 1), 1);
-				count++;
-				break ;
-			}
 			count += triage_center(*(string + 1), &args);
 			string++;
 		}
@@ -81,7 +77,7 @@ int	ft_printf(const char *string, ...)
 	return (count);
 }
 
-/*int main()
+int main()
 {
 	// int age = 0;
 	char *nom = "Luis";
@@ -94,4 +90,4 @@ int	ft_printf(const char *string, ...)
 	// printf("%d", ft_printf("Je m'appelle %s", nom));
 
 	return 0;
-}*/
+}

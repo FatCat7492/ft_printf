@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:49:00 by luis              #+#    #+#             */
-/*   Updated: 2026/11/13 15:24:27 by luis             ###   ########.fr       */
+/*   Updated: 2026/11/16 12:43:57 by luschuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	ft_putnbr_base(char *base, unsigned long number)
+int	ft_putnbr_base(char *base, unsigned long number)
 {
 	unsigned long	nbr;
 	int				count;
 	unsigned long	base_length;
 
-	base_length = 16;
+	base_length = ft_strlen(base);
 	count = 0;
 	nbr = number;
 	if (number == 0)

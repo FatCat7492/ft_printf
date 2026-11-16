@@ -16,7 +16,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(LIBFT_DIR)/libft.a:
+$(LIBFT_DIR)/libft.a: $(LIBFT_DIR)/libft.a
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a
