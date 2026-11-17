@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luschuma <luschuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luis <luis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 11:43:21 by luschuma          #+#    #+#             */
-/*   Updated: 2026/11/16 16:15:11 by luschuma         ###   ########.fr       */
+/*   Updated: 2026/11/16 16:52:52 by luis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int	ft_printf(const char *string, ...)
 	return (count);
 }
 
-int main()
-{
-	printf("%%%%\n");
-	ft_printf("%%%%\n");
+// int main()
+// {
+// 	//printf("100%");
+// 	ft_printf("100%");
 
-	return 0;
-}
+// 	return 0;
+// }

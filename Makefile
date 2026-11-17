@@ -14,9 +14,9 @@ RM = rm -f
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: libft $(NAME)
 
-$(LIBFT_DIR)/libft.a: $(LIBFT_DIR) $(OBJS)
+libft:
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a
@@ -36,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
